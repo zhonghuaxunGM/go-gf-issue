@@ -1,0 +1,12 @@
+gfcli:
+  gen:
+    dao:
+      - link: "mysql:root:qwe123QWE@tcp(127.0.0.1:3306)/gf_issue"
+        tables: "test"
+        jsonCase: "CamelLower"
+
+database:
+  default:
+    type: "mysql"
+    link: "root:qwe123QWE@tcp(127.0.0.1:3306)/gf_issue"
+    # debug: false

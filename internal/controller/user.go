@@ -27,8 +27,6 @@ func (e *User) Detail(ctx context.Context, req *api.DetailUserReq) (res *api.Det
 		}
 	}()
 	fmt.Println(getURI(ctx, "id"))
-
 	fmt.Println(getURI(ctx, "id").Int64())
-
 	return nil, err
 }

@@ -22,40 +22,23 @@ import (
 
 func main() {
 	issue2181()
-	// issue2105()
-	//cmd.Main.Run(gctx.New())
 }
+
 func issue2181() {
 	startTime := gtime.New(1664640000)
 	fmt.Println(startTime) // 2022-10-02 00:00:00
 
 	endTime := gtime.New(1665308819)
 	fmt.Println(endTime) //2022-10-09 17:46:59
-
-	cnt, err := dao.Test1665845241938231900.Ctx(gctx.New()).Where("create_time >= ? and create_time <= ?", startTime, endTime).Count()
-	fmt.Println(cnt, err)
-}
-
-func issue2105() {
-	type JsonItem struct {
-		Name  string `json:"name,omitempty"`
-		Value string `json:"value,omitempty"`
+	type User struct {
+		Id         int
+		Passport   string
+		Password   string
+		NickName   string
+		CreateTime gtime.Time
 	}
-	type Test struct {
-		Id   string      `json:"id,omitempty"`
-		Json []*JsonItem `json:"json,omitempty"`
-	}
-
-	ctx := gctx.New()
-	var list []*Test
-	err := dao.Test.Ctx(ctx).Scan(&list)
-	if err != nil {
-		return
-	}
-	g.Dump(list[0])
-	fmt.Println(list[0].Json)
-	fmt.Println(len(list[0].Json))
-	g.Dump(list[1])
-	fmt.Println(list[1].Json)
-	fmt.Println(len(list[1].Json))
+	user := make([]User, 0)
+	err := dao.Test1665845241938231900.Ctx(gctx.New()).Where("create_time >= ? and create_time <= ?", startTime, endTime).Scan(&user)
+	fmt.Println(err)
+	g.Dump(user)
 }

@@ -2,7 +2,7 @@ gfcli:
   gen:
     dao:
       - link: "mysql:root:qwe123QWE@tcp(127.0.0.1:3306)/gf_issue"
-        tables: "test"
+        tables: "test_1665845241938231900"
         jsonCase: "CamelLower"
 
 database:

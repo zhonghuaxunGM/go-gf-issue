@@ -19,6 +19,12 @@ var (
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server()
 			s.SetPort(7799)
+			s.Group("/", func(group *ghttp.RouterGroup) {
+				group.ALLMap(g.Map{
+					"/hello":  hello,
+					"/hello2": hello,
+				})
+			})
 			s.BindHandler("/ws", func(r *ghttp.Request) {
 				// var ctx = r.Context()
 				ws, err := r.WebSocket()
@@ -56,3 +62,5 @@ var (
 		},
 	}
 )
+
+func hello(r *ghttp.Request) {}
